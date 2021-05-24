@@ -1,12 +1,22 @@
-public class Tarjeta {
+public abstract class Tarjeta {
     String nif;
     int pin;
     String nombre;
     String apellido;
-    boolean estado;
+    private boolean estado;
+
+    public Tarjeta() {
+    }
+
+    public Tarjeta(String nif, int pin, String nombre, String apellido) {
+        this.nif = nif;
+        this.pin = pin;
+        this.nombre = nombre;
+        this.apellido = apellido;
+    }
 
     void mostrarTarjeta(){
-        System.out.println(this.nombre);
+        System.out.println("Se llam:"+ this.nombre);
         System.out.println(this.apellido);
         System.out.println(this.nif);
     }
@@ -52,3 +62,4 @@ public class Tarjeta {
     }
 
 }
+
