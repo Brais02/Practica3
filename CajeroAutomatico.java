@@ -3,28 +3,55 @@ import java.util.Scanner;
 
 public class CajeroAutomatico {
     static Scanner src = new Scanner(System.in);
-    int idUltCaj = 0;
+    int idUltCaj;
     int idCaj = 0;
     int Billetes[][];
     ArrayList<Tarjeta> listaTarjeta = new ArrayList<Tarjeta>();
 
     void mostrarCajero(){
-        for (int i = 0; 7 > i; i++) {
+        for (int i = 0; Billetes.length > i; i++) {
         System.out.println(this.Billetes[i][1]+ " billetes de " + this.Billetes[i][0]);
         }
     }
     void sacarDinero(){
+        boolean transaccion=true;
         System.out.println("Introduce tu NIF:");
         String nif = src.nextLine();
         System.out.println("Introduce tu PIN:");
         int pin = src.nextInt();
         boolean usuarioigual = comprobarUsuario(this.getListaTarjeta(), nif, pin);
         if (usuarioigual == true) {
-            /*Ahora si que deberia de empezar a sacar cuartos en orden de mas a menos*/
             System.out.println("Cuanto dinero quieres sacar?");
             int dinerosacar = src.nextInt();
-            
-
+            /*LOS BILLETES TIENE QUE TENER SOLO UN BUCLE, UN WHILE QUE HAGA LO DEL FOR Y ADEMAS SE EJECUTE MIENTRAS EL DINEROSACAR SEA MAYOR QUE 0,
+            * ADEMÁS PRIMERO CENTRARSE EN QUE SAQUE EL DINERO Y DESPUÉS HACER QUE SAQUE EL RESUMEN DE LOS DATOS EXTRAIDOS, CON UNA VARIABLE
+            * QUE TENGA EL NUMERO DE BILLETES EXTRAIDOS Y QUE SE MUESTRE AL LADO EL TIPO DE BILLETE QUE SE HA SACADO, COMO MOSTRARCAJERO(),
+            * PERO TENIENDO DE PRIMERA LLAMADA A LA VARIABLE.*/
+            for (int i = 0; Billetes.length > i; i++) {
+                while (Billetes[i][1] == 0 || Billetes[i][0] < dinerosacar || dinerosacar != 0)
+                    dinerosacar = dinerosacar - Billetes[i][0];
+                Billetes[i][1] = Billetes[i][1]- 1;
+            }
+            if (dinerosacar == 0) {
+                System.out.println("Transacción completada con exito");
+                return;
+            } else {
+                System.out.println("No se ha podido completar la transacción");
+            }
+//            try {
+//                for (int i = 0; Billetes.length > i; i++) {
+//                    while (Billetes[i][1] == 0 || Billetes[i][0] < dinerosacar)
+//                        dinerosacar = dinerosacar - Billetes[i][0];
+//                    Billetes[i][0] = Billetes[i - 1][0];
+//                }
+//            } catch(Exception e){
+//                transaccion = false;
+//            }
+//            if (transaccion == false){
+//                System.out.println("No se ha podido completar la transacción");
+//            } else {
+//                System.out.println("Transacción completada con exito");
+//            }
 
         } else {
             System.out.println("No has introducido los datos de NIF o PIN correcto");
