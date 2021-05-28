@@ -28,8 +28,11 @@ public class Menu {
         String menu = src.nextLine();
             switch (menu) {
                 case "1":
-
+                    /*Asegurarme de que me vuelva a llevar al menu y que no me salga de la aplicación*/
+                    micajero.sacarDinero();
+                    System.out.println("Finalizando proceso");
                     break;
+
 
                 case "2":
                     boolean condicionsalir = false;
