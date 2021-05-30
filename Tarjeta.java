@@ -5,9 +5,12 @@ public abstract class Tarjeta {
     String apellido;
     private boolean estado;
 
+    /*Constructor de la clase sin parametros por si se instancia vacia, que no de
+     * error y poder llamar a algun constructor*/
     public Tarjeta() {
     }
 
+    /*Constructor de la clase con todos los parametros propios menos estado*/
     public Tarjeta(String nif, int pin, String nombre, String apellido) {
         this.nif = nif;
         this.pin = pin;
@@ -15,10 +18,12 @@ public abstract class Tarjeta {
         this.apellido = apellido;
     }
 
-    void mostrarTarjeta(){
-        System.out.println("Se llam:"+ this.nombre);
-        System.out.println(this.apellido);
-        System.out.println(this.nif);
+    /*Muestra por pantalla el valor de los atributos del constructor quitado
+     * de pin*/
+    void mostrarTarjeta() {
+        System.out.println("| El nombre es: " + this.nombre + "              |");
+        System.out.println("| El apellido es: " + this.apellido + "            |");
+        System.out.println("| El NIF es: " + this.nif + "            |");
     }
 
     public String getNif() {
@@ -62,4 +67,3 @@ public abstract class Tarjeta {
     }
 
 }
-
